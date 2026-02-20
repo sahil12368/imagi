@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import PreviewEngine from '../components/PreviewEngine';
 import { Loader2, Code, Laptop, Sparkles, CheckCircle, ArrowUp, User, Bot, Send, ChevronLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -46,7 +46,7 @@ const ProjectGenerator = () => {
                 currentFiles: Object.keys(files).length > 0 ? files : undefined
             };
 
-            const res = await axios.post('http://localhost:5000/api/ai/generate-project', payload, config);
+            const res = await api.post('/ai/generate-project', payload, config);
 
             const generatedFiles = res.data.project.files;
 
